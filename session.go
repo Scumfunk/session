@@ -15,7 +15,7 @@ import (
 )
 
 // Version # of session
-const Version = "3.1.8"
+const Version = "3.1.9"
 
 var (
 	// ErrInvalidSessionID invalid session id
