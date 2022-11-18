@@ -9,7 +9,7 @@
 ### Download and install
 
 ```bash
-go get -v github.com/go-session/session/v3
+go get -v github.com/Scumfunk/session/v3
 ```
 
 ### Create file `server.go`
@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"net/http"
 
-	session "github.com/go-session/session/v3"
+	session "github.com/Scumfunk/session/v3"
 )
 
 func main() {

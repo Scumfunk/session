@@ -11,7 +11,7 @@ Example:
 		"fmt"
 		"net/http"
 
-		session "github.com/go-session/session/v3"
+		session "github.com/Scumfunk/session/v3"
 	)
 
 	func main() {
