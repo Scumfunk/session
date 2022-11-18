@@ -31,6 +31,7 @@ var defaultOptions = options{
 	cookieLifeTime: 3600 * 24 * 7,
 	expired:        7200,
 	secure:         true,
+	forceSecure:    false,
 	sameSite:       http.SameSiteDefaultMode,
 	sessionID: func(_ context.Context) string {
 		return newUUID()
@@ -44,6 +45,7 @@ type options struct {
 	cookieName              string
 	cookieLifeTime          int
 	secure                  bool
+	forceSecure             bool
 	domain                  string
 	sameSite                http.SameSite
 	expired                 int64
@@ -90,6 +92,13 @@ func SetDomain(domain string) Option {
 func SetSecure(secure bool) Option {
 	return func(o *options) {
 		o.secure = secure
+	}
+}
+
+// SetForceSecure Set cookie security (force)
+func SetForceSecure(forceSecure bool) Option {
+	return func(o *options) {
+		o.forceSecure = forceSecure
 	}
 }
 
@@ -248,6 +257,9 @@ func (m *Manager) encodeSessionID(sid string) string {
 }
 
 func (m *Manager) isSecure(r *http.Request) bool {
+	if m.opts.forceSecure {
+		return true
+	}
 	if !m.opts.secure {
 		return false
 	}
